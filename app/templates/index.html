@@ -1,0 +1,51 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{{ wtf.quick_form(form)}}
+{% block content %}
+<html>
+    <head>
+       
+        <title>{{ title }}Bridge</title>
+    </head>
+    <body>
+         <h1>Bridge Terminal</h1>
+    <form action="" method="post" novalidate style="padding-left: 5%;">
+        {{ form.hidden_tag() }}
+         <p>
+         <div class="custom-control custom-radio">
+            {{ form.direction.label }}<br>
+            {{ form.direction(class="radio-inline") }}
+        </div>
+        </p>
+        <p>
+            {{ form.seed.label }}<br>
+            {{ form.seed(size=32) }}
+        </p>
+        <p>
+            {{ form.recepient.label }}<br>
+            {{ form.recepient(size=32) }}
+        </p>
+        <p>
+            {{ form.amount.label }}<br>
+            {{ form.amount(size=32) }}
+        </p>
+        <p>
+            {{ form.assetId.label }}<br>
+            {{ form.assetId(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+         <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </body>
+</html>
+{% endblock %}
